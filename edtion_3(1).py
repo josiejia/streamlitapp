@@ -162,11 +162,8 @@ def query3():
 
         return df.set_index("Level")
 
-    df = load_data()
-
-
-    
         df = load_data()
+      
         # streamlit的滑动条(年龄数据)
         ages = df['Age'].unique().tolist()
 
