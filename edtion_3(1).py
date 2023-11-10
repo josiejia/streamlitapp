@@ -4,6 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
+from urllib.error import URLError
 
 # Author: Jiao Ma
 # Load data function
@@ -154,16 +155,16 @@ def query3():
     st.write(
     """Underlying diseases, also known as comorbidities, can affect cancer significantly. The information below shows different Underlying diseases' effect on cancer."""
 )
-
-
+  
     @st.cache_data 
     def load_data():
         df = pd.read_excel('114514(2).xlsx')
 
         return df.set_index("Level")
 
-        df = load_data()
-      
+    df = load_data()
+    try:
+        df = load_data()      
         # streamlit的滑动条(年龄数据)
         ages = df['Age'].unique().tolist()
 
@@ -202,7 +203,14 @@ def query3():
             d_tg=data.groupby('Level')
             s=sns.catplot(x='Level',y=x,kind='box',data=data)
             st.pyplot(s)
-
+          
+    except URLError as e:
+        st.error(
+        """
+        **This demo requires internet access.**
+        Connection error: %s
+    """
+            % e.reason)
 
 
 # Author: Jiao Ma
