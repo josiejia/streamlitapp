@@ -102,25 +102,19 @@ def query1():
     else:  
         st.write('error')
 
-    
-    
-    
-    
-
-    
-
-# Author: Zixin Ye & Zijun Fu & Jiao Ma
 def query2():
-
+# Author: Jiao Ma
   min_age = int(df['Age'].min())
   max_age = int(df['Age'].max())
 
+# Author: Zixin Ye
   st.header('Query 2: Lifestyle Factors')
 
   st.sidebar.header('Filters')
-  age_range = st.sidebar.slider('Age Range', min_value=min_age, max_value=max_age, value=[min_age,max_age])
+  age_range = st..slider('Age Range', min_value=min_age, max_value=max_age, value=[min_age,max_age])
   gender = st.sidebar.radio('Gender', df['Gender'].unique())
 
+  # Author: Jiao Ma
   df_filtered = df[(df['Age'] >= age_range[0]) & (df['Age'] <= age_range[1]) & (df['Gender'] == gender)]
 
   cols = ['Smoking', 'Alcohol use', 'Passive Smoker', 'Balanced Diet', 'Obesity','Weight Loss']
@@ -128,7 +122,7 @@ def query2():
 
   fig, ax = plt.subplots()
   for col in selected_cols:
-      df_filtered[col].value_counts().plot.bar(ax=ax)
+      df_filtered[col].value_counts().area_chart(ax=ax)
   st.pyplot(fig)
 
   st.markdown("**Observations:**")
@@ -143,7 +137,7 @@ def query2():
   if 'Weight Loss' in selected_cols:
       st.write("- Lung cancer has little to do with weight loss")
      
-      
+  # Author: Zijun Fu   
   with st.expander("See data"):
       st.dataframe(df_filtered[selected_cols])
 
