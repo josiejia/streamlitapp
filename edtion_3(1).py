@@ -12,16 +12,15 @@ def load_data():
   data = pd.read_excel('cancer patient data sets.xlsx')
   return data
 
-
 # Load data at start  
 df = load_data()
 
-# Author: Jiao Ma
 # Function definitions
 def intro():
   st.header('Welcome to the Cancer Patient Analysis App')
   st.write('This is the home page of the app.')
   st.snow()
+  
   #Author:Jin Yan & Xinwen Liu
 def query1():
     st.header('Query 1: Impact of external environment ')
@@ -101,7 +100,7 @@ def query1():
  
 
     else:  
-        st.write('无效的选择')
+        st.write('error')
 
     
     
@@ -110,7 +109,7 @@ def query1():
 
     
 
-# Author: Zixin Ye & Zijun Fu
+# Author: Zixin Ye & Zijun Fu & Jiao Ma
 def query2():
 
   min_age = int(df['Age'].min())
