@@ -194,7 +194,7 @@ def query3():
                 columns={"index": "level of cancer", "value": "level of underlying diseases"}
         )
     
-            data=pd.read_excel("114514(2)")
+            data=pd.read_excel("114514(2).xlsx")
             list1=data.columns.tolist()
             list1.pop(0)
             list1.pop(-1)
