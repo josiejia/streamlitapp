@@ -55,13 +55,13 @@ def query1():
     ax.legend(ncols=len(category_names), bbox_to_anchor=(0, 1),
             loc='lower left', fontsize='small')
     #
-    
-    if st.sidebar.radio('Select an external factor') == 'Air Pollution':  
+    page=st.sidebar.radio('Select an external factor',['Air Pollution','OccuPational Hazards'])
+    if page == 'Air Pollution':  
         st.write('你选择了 Air Pollution')  
         st.page_header('Air Pollution 数据分析')  # 设置页面标题 
         st.pyplot(fig)# 显示预先准备好的图表  
 
-    elif st.sidebar.radio('Select an external factor') == 'OccuPational Hazards':  
+    elif page == 'OccuPational Hazards':  
         st.write('你选择了 OccuPational Hazards')  
         st.page_header('OccuPational Hazards 数据分析')  # 设置页面标题  
         # 在这里添加你为 OccuPational Hazards 准备的图表代码
