@@ -56,12 +56,12 @@ def query1():
     page=st.sidebar.radio('Select an external factor',['Air Pollution','OccuPational Hazards'])
     if page == 'Air Pollution':  
         st.write('你选择了 Air Pollution')  
-        st.title('Air Pollution 数据分析')  # 设置页面标题 
+        st.title('Air Pollution Data Analysis')  # 设置页面标题 
         st.pyplot(fig)# 显示预先准备好的图表  
 
     elif page == 'OccuPational Hazards':  
         st.write('你选择了 OccuPational Hazards')  
-        st.title('OccuPational Hazards 数据分析')  # 设置页面标题  
+        st.title('OccuPational Hazards Data Analysis')  # 设置页面标题  
         # 在这里添加你为 OccuPational Hazards 准备的图表代码
         #
         category_names = ['degree8', 'degree7',
