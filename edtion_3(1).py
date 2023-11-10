@@ -9,7 +9,7 @@ import seaborn as sns
 # Load data function
 @st.cache_data
 def load_data():
-  data = pd.read_excel(r'C:\Users\86152\Documents\WeChat Files\wxid_gzqpkeum2llc12\FileStorage\File\2023-11\cancer patient data sets.xlsx')
+  data = pd.read_excel('cancer patient data sets.xlsx')
   return data
 
 # Author: Jiao Ma
