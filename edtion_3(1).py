@@ -150,13 +150,71 @@ def query2():
 # Author: Jiao Ma    
 def query3():
    
-  st.header("Symptom Analysis")
-  symptoms = ["Chest Pain", "Coughing of Blood", "Fatigue", "Weight Loss", "Shortness of Breath"]
-  selected_symptoms = st.multiselect("Select Symptoms", symptoms, default=symptoms)
-  counts = [df[symptom].sum() for symptom in selected_symptoms]
-  fig, ax = plt.subplots()
-  ax.pie(counts, labels=selected_symptoms, autopct="%1.1f%%")
-  st.pyplot(fig)
+  st.title('Query 3: The Impact of Underlying Diseases on Cancer ')
+    st.write(
+    """Underlying diseases, also known as comorbidities, can affect cancer significantly. The information below shows different Underlying diseases' effect on cancer."""
+)
+
+
+    @st.cache_data 
+    def load_data():
+        df = pd.read_excel('114514(2).xlsx')
+
+        return df.set_index("Level")
+
+    df = load_data()
+
+
+    try:
+        df = load_data()
+        # streamlit的滑动条(年龄数据)
+        ages = df['Age'].unique().tolist()
+
+    # 滑动条, 最大值、最小值、区间值
+        age_selection = st.slider('Age:',
+                            min_value=min(ages),
+                            max_value=max(ages),
+                            value=(min(ages), max(ages)))
+    
+  
+        level = st.multiselect(
+            "Choose level", list(df.index.unique()), ["Low"]
+    )
+
+    # 根据选择过滤数据
+        mask = (df['Age'].between(*age_selection)) & (df['Age'])
+        number_of_result = df[mask].shape[0]
+
+        if not level:
+            st.error("Please select at least one option.")
+        else:
+            data = df.loc[mask].loc[level]
+            st.write("### Level of Cancer", data.sort_index())
+
+            data = data.T.reset_index()
+            data = pd.melt(data, id_vars=["index"]).rename(
+                columns={"index": "level of cancer", "value": "level of underlying diseases"}
+        )
+    
+            data=pd.read_excel("114514(2)")
+            list1=data.columns.tolist()
+            list1.pop(0)
+            list1.pop(-1)
+            x=st.selectbox('',list1)
+            data=data[['Level',x]]
+            d_tg=data.groupby('Level')
+            s=sns.catplot(x='Level',y=x,kind='box',data=data)
+            st.pyplot(s)
+
+    
+    except URLError as e:
+        st.error(
+        """
+        **This demo requires internet access.**
+        Connection error: %s
+    """
+            % e.reason)
+
 
 # Author: Jiao Ma
 # Navigation
