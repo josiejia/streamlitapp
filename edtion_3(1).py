@@ -21,6 +21,7 @@ df = load_data()
 def intro():
   st.header('Welcome to the Cancer Patient Analysis App')
   st.write('This is the home page of the app.')
+  st.snow()
 def query1():
     st.header('Query 1: Impact of external environment ')
     st.sidebar.header('External Factor')
