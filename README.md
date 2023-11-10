@@ -45,3 +45,17 @@ This app allows interactive exploration of the cancer patient dataset. Key featu
 **Query 2:** Filter patients by age and gender, analyze lifestyle factors like smoking, diet, obesity etc. Plots distributions.
 
 **Query 3:** Show prevalence of symptoms like fatigue, weight loss, across cancer stages via interactive pie chart.
+
+**Landing Page:** Introduces dataset and app. Provides navigation options.
+
+st.header('Welcome to the Cancer Patient Analysis App')
+st.write('This app allows you to explore and analyze data on 1000 hypothetical cancer patients. Use the sidebar to navigate between different pages.')
+
+st.subheader('About the data')
+st.write('The dataset contains synthetic data on patient demographics, lifestyle factors, symptoms, and cancer stage. It was randomly generated for this demonstrative app.')
+
+st.subheader('App features')
+st.write('Query 1 - Analyze external factors like pollution and work hazards')
+st.write('Query 2 - Filter data and visualize lifestyle factors') 
+st.write('Query 3 - Explore prevalence of symptoms across cancer stages')
+
