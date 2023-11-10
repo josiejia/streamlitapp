@@ -1,4 +1,3 @@
-# Author: Jiao Ma
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -7,13 +6,13 @@ import seaborn as sns
 from urllib.error import URLError
 
 # Author: Jiao Ma
-# Load data function
+
 @st.cache_data
 def load_data():
   data = pd.read_excel('cancer patient data sets.xlsx')
   return data
 
-# Author: Jiao Ma
+
 # Load data at start  
 df = load_data()
 
@@ -23,6 +22,7 @@ def intro():
   st.header('Welcome to the Cancer Patient Analysis App')
   st.write('This is the home page of the app.')
   st.snow()
+  #Author:Jin Yan & Xinwen Liu
 def query1():
     st.header('Query 1: Impact of external environment ')
     st.sidebar.header('External Factor')
@@ -110,7 +110,7 @@ def query1():
 
     
 
-# Author: Jiao Ma 
+# Author: Zixin Ye & Zijun Fu
 def query2():
 
   min_age = int(df['Age'].min())
@@ -148,7 +148,7 @@ def query2():
   with st.expander("See data"):
       st.dataframe(df_filtered[selected_cols])
 
-# Author: Jiao Ma    
+# Author: Xinyue Yv & Xinyv Song    
 def query3():
    
     st.title('Query 3: The Impact of Underlying Diseases on Cancer ')
@@ -218,7 +218,6 @@ def query3():
 st.sidebar.title('Navigation')
 selected_page = st.sidebar.radio('Select a page:', ['Introduction', 'Query 1', 'Query 2', 'Query 3'])
 
-# Author: Jiao Ma
 # Page router 
 if selected_page == 'Introduction':
     intro()
