@@ -150,7 +150,7 @@ def query2():
 # Author: Jiao Ma    
 def query3():
    
-  st.title('Query 3: The Impact of Underlying Diseases on Cancer ')
+    st.title('Query 3: The Impact of Underlying Diseases on Cancer ')
     st.write(
     """Underlying diseases, also known as comorbidities, can affect cancer significantly. The information below shows different Underlying diseases' effect on cancer."""
 )
