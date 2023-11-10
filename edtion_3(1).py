@@ -61,7 +61,7 @@ def query1():
 
     elif page == 'OccuPational Hazards':  
         st.write('你选择了 OccuPational Hazards')  
-        st.page_header('OccuPational Hazards 数据分析')  # 设置页面标题  
+        st.title('OccuPational Hazards 数据分析')  # 设置页面标题  
         # 在这里添加你为 OccuPational Hazards 准备的图表代码
         #
         category_names = ['degree8', 'degree7',
