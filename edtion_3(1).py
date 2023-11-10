@@ -165,7 +165,7 @@ def query3():
     df = load_data()
 
 
-    try:
+    
         df = load_data()
         # streamlit的滑动条(年龄数据)
         ages = df['Age'].unique().tolist()
@@ -206,14 +206,6 @@ def query3():
             s=sns.catplot(x='Level',y=x,kind='box',data=data)
             st.pyplot(s)
 
-    
-    except URLError as e:
-        st.error(
-        """
-        **This demo requires internet access.**
-        Connection error: %s
-    """
-            % e.reason)
 
 
 # Author: Jiao Ma
