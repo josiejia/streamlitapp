@@ -24,9 +24,7 @@ def intro():
 def query1():
     st.header('Query 1: Impact of external environment ')
     st.sidebar.header('External Factor')
-    data = pd.DataFrame({'external factors': ['Air Pollution', 'OccuPational Hazards']})
-    st.sidebar.radio('Select an external factor', data['external factors'])
-    #
+
     category_names = ['degree8', 'degree7',
                   'degree6','degree5','degree4','degree3','degree2','degree1']
     results = {
