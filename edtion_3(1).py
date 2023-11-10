@@ -22,10 +22,10 @@ def intro():
   st.header('Welcome to the Cancer Patient Analysis App')
   st.write('This is the home page of the app.')
 def query1():
-    st.title('Query 1: Impact of external environment ')
-    st.header('Air Pollution')
-    
-    
+    st.header('Query 1: Impact of external environment ')
+    st.sidebar.header('External Factor')
+    data = pd.DataFrame({'external factors': ['Air Pollution', 'OccuPational Hazards']})
+    st.sidebar.radio('Select an external factor', data['external factors'])
     #
     category_names = ['degree8', 'degree7',
                   'degree6','degree5','degree4','degree3','degree2','degree1']
@@ -54,44 +54,54 @@ def query1():
         ax.bar_label(rects, label_type='center', color=text_color)
     ax.legend(ncols=len(category_names), bbox_to_anchor=(0, 1),
             loc='lower left', fontsize='small')
-    st.pyplot(fig)
     #
     
-    
-    st.header('Occupation Hazards')
-    category_names = ['degree8', 'degree7',
+    if st.sidebar.radio('Select an external factor') == 'Air Pollution':  
+        st.write('你选择了 Air Pollution')  
+        st.page_header('Air Pollution 数据分析')  # 设置页面标题 
+        st.pyplot(fig)# 显示预先准备好的图表  
+
+    elif st.sidebar.radio('Select an external factor') == 'OccuPational Hazards':  
+        st.write('你选择了 OccuPational Hazards')  
+        st.page_header('OccuPational Hazards 数据分析')  # 设置页面标题  
+        # 在这里添加你为 OccuPational Hazards 准备的图表代码
+        #
+        category_names = ['degree8', 'degree7',
                         'degree6','degree5','degree4','degree3','degree2','degree1']
-    results2 = {
+        results2 = {
             'Low': [0,7,0,3,23,27,23,17],
             'Medium': [0,18,6,14,11,17,20,14],
             'High': [5,0,5,37,22,31,0,0]
 
         }
-    labels = list(results2.keys())
-    data = np.array(list(results2.values()))
-    data_cum = data.cumsum(axis=1)
-    category_colors = plt.colormaps['RdYlGn'](
-        np.linspace(0.15, 0.85, data.shape[1]))
+        labels = list(results2.keys())
+        data = np.array(list(results2.values()))
+        data_cum = data.cumsum(axis=1)
+        category_colors = plt.colormaps['RdYlGn'](
+            np.linspace(0.15, 0.85, data.shape[1]))
 
-    fig2, ax = plt.subplots(figsize=(9.2, 5))
-    ax.invert_yaxis()
-    ax.xaxis.set_visible(False)
-    ax.set_xlim(0, np.sum(data, axis=1).max())
+        fig2, ax = plt.subplots(figsize=(9.2, 5))
+        ax.invert_yaxis()
+        ax.xaxis.set_visible(False)
+        ax.set_xlim(0, np.sum(data, axis=1).max())
 
-    for i, (colname, color) in enumerate(zip(category_names, category_colors)):
-        widths = data[:, i]
-        starts = data_cum[:, i] - widths
-        rects = ax.barh(labels, widths, left=starts, height=0.5,
+        for i, (colname, color) in enumerate(zip(category_names, category_colors)):
+            widths = data[:, i]
+            starts = data_cum[:, i] - widths
+            rects = ax.barh(labels, widths, left=starts, height=0.5,
                                 label=colname, color=color)
 
-        r, g, b, _ = color
-        text_color = 'white' if r * g * b < 0.5 else 'darkgrey'
-        ax.bar_label(rects, label_type='center', color=text_color)
-    ax.legend(ncols=len(category_names), bbox_to_anchor=(0, 1),
-            loc='lower left', fontsize='small')
-    st.pyplot(fig2)
+            r, g, b, _ = color
+            text_color = 'white' if r * g * b < 0.5 else 'darkgrey'
+            ax.bar_label(rects, label_type='center', color=text_color)
+        ax.legend(ncols=len(category_names), bbox_to_anchor=(0, 1),
+                loc='lower left', fontsize='small')
+        st.pyplot(fig2)
         #
  
+
+    else:  
+        st.write('无效的选择')
 
     
     
